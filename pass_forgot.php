@@ -5,6 +5,7 @@ require 'mailer/vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 $database = new Database();
 $db = $database->getConnection();
@@ -42,11 +43,11 @@ class PasswordReset
         $mailer = new PHPMailer(true);
         try {
             $mailer->isSMTP();
-            $mailer->Host = "mail.jankarlik.cz";
+            $mailer->Host = SMTP_HOST;
             $mailer->SMTPAuth = true;
-            $mailer->Username = "info@ninjicek.jankarlik.cz";
-            $mailer->Password = "HovnoKleslo1234!";
-            $mailer->Port = 465;
+            $mailer->Username = SMTP_USERNAME;
+            $mailer->Password = SMTP_PASSWORD;
+            $mailer->Port = SMTP_PORT;
             $mailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mailer->isHTML(true);
             $mailer->CharSet = 'UTF-8';

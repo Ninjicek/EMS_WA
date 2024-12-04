@@ -7,6 +7,7 @@ require 'mailer/vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 class Mailer
 {
@@ -17,11 +18,11 @@ class Mailer
     {
         $this->mailer = new PHPMailer(true);
         $this->mailer->isSMTP();
-        $this->mailer->Host = "mail.jankarlik.cz";
+        $this->mailer->Host = SMTP_HOST;
         $this->mailer->SMTPAuth = true;
-        $this->mailer->Username = "info@ninjicek.jankarlik.cz";
-        $this->mailer->Password = "HovnoKleslo1234!";
-        $this->mailer->Port = 465;
+        $this->mailer->Username = SMTP_USERNAME;
+        $this->mailer->Password = SMTP_PASSWORD;
+        $this->mailer->Port = SMTP_PORT;
 
         $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $this->mailer->isHTML(true);
